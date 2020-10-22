@@ -99,10 +99,7 @@ const useRemove = (todos) => {
   };
 
   const removeCompleted = () => {
-    // console.log("原始todos对象：", todos);
-    // todos = reactive(todos.filter((todo) => !todo.completed));
-    // console.log("修改后的todos对象：", todos);
-    todos = todos.filter((todo) => !todo.completed);
+    todos.value = todos.value.filter((todo) => !todo.completed);
   };
   return {
     removeTodo,
@@ -139,19 +136,19 @@ const useFilter = (todos) => {
     window.removeEventListener("hashchange");
   });
 
-  const filteredTodos = computed(() => filter[type.value](todos));
+  const filteredTodos = computed(() => filter[type.value](todos.value));
 
-  const completedCount = computed(() => filter.completed(todos));
+  const completedCount = computed(() => filter.completed(todos.value));
 
   return { type, filteredTodos, completedCount };
 };
 
 const useStorage = () => {
   const storageKey = "TODOLIST",
-    storage = JSON.parse(getStorage(storageKey)) || [],
-    todos = reactive(storage);
+    todos = ref(JSON.parse(getStorage(storageKey)) || []);
+  console.log(todos.value);
   watchEffect(() => {
-    setStorage(storageKey, JSON.stringify(todos));
+    setStorage(storageKey, JSON.stringify(todos.value));
   });
   return todos;
 };
