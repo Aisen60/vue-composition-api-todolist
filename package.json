@@ -1,5 +1,5 @@
 {
-  "name": "vue-composition-api-todolist",
+  "name": "todo",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -11,10 +11,5 @@
   "devDependencies": {
     "vite": "^1.0.0-rc.1",
     "@vue/compiler-sfc": "^3.0.0-rc.1"
-  },
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
